@@ -32,6 +32,7 @@ filelock==3.9.0
 fonttools==4.43.1
 gitdb==4.0.10
 GitPython==3.1.37
+gunicorn==21.2.0
 h11==0.14.0
 httpcore==0.18.0
 httptools==0.6.0
@@ -139,7 +140,6 @@ watchdog==3.0.0
 watchfiles==0.20.0
 wcwidth==0.2.8
 xgboost==2.0.1
-
 websockets==11.0.3
 wheel==0.41.2
 widgetsnbextension==4.0.9
