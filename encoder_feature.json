@@ -1,0 +1,65 @@
+{
+    "recruitment_channel": {
+        "sourcing": 2,
+        "other": 0,
+        "referred": 1
+    },
+    "region": {
+        "region_7": 31,
+        "region_22": 14,
+        "region_19": 10,
+        "region_23": 15,
+        "region_26": 18,
+        "region_2": 11,
+        "region_20": 12,
+        "region_34": 27,
+        "region_1": 0,
+        "region_4": 28,
+        "region_29": 21,
+        "region_31": 24,
+        "region_15": 6,
+        "region_14": 5,
+        "region_11": 2,
+        "region_5": 29,
+        "region_28": 20,
+        "region_17": 8,
+        "region_13": 4,
+        "region_16": 7,
+        "region_25": 17,
+        "region_10": 1,
+        "region_27": 19,
+        "region_30": 23,
+        "region_12": 3,
+        "region_21": 13,
+        "region_32": 25,
+        "region_6": 30,
+        "region_33": 26,
+        "region_8": 32,
+        "region_24": 16,
+        "region_3": 22,
+        "region_9": 33,
+        "region_18": 9
+    },
+    "department": {
+        "Sales & Marketing": 7,
+        "Operations": 4,
+        "Technology": 8,
+        "Analytics": 0,
+        "R&D": 6,
+        "Procurement": 5,
+        "Finance": 1,
+        "HR": 2,
+        "Legal": 3
+    },
+    "education": {
+        "Doctor": 3,
+        "Bachelor": 0,
+        "Master": 4,
+        "Below College": 1,
+        "College": 2
+    },
+    "promo":{
+        "is_promo":"1" ,
+        "not_promo":"0"
+    }
+}
