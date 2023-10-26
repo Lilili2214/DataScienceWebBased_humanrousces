@@ -1,5 +1,4 @@
 import streamlit as st
-from mpl_toolkits.mplot3d import Axes3D
 import pandas as pd
 import plotly.express as px
 import requests
@@ -8,7 +7,6 @@ import numpy as np
 import plotly.graph_objects as go
 from employee import Employee
 from train_model import get_feature_retention
-from sklearn.decomposition import PCA
 import random
 import json
 import plotly.figure_factory as ff
