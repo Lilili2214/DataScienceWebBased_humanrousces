@@ -9,7 +9,6 @@ from connecttion import query, categorize_age, categorize_salary
 
 st.set_page_config(layout="wide" )
 
-# Convert the data into a pandas DataFrame with column headers
 df= query("workforce")
 df_re= query('retention_insight')
 # data for age range of retention 
@@ -51,15 +50,15 @@ with st.container():
             <h2 style="color: black; text-align: center;">Workforce Dashboard</h2>
         </div>
         """, unsafe_allow_html=True)
-    # Create 3 columns with different widths
+
     st.markdown("<br>", unsafe_allow_html=True) 
     col1, col2, col3= st.columns([0.2,0.4, 0.4])
     st.dataframe(df_merge)
-    # Use the columns for displaying content
+    
     
     with col1:
         #filter 
-        selected_department = st.selectbox('Select a department',options=['all'] + list(df['DEPARTMENT'].unique())  # The options in the selectbox are 'all' and the unique values in the 'department' column
+        selected_department = st.selectbox('Select a department',options=['all'] + list(df['DEPARTMENT'].unique())  
         )
         if selected_department != 'all':
             df_merge = df_merge[df_merge['DEPARTMENT'] == selected_department]
@@ -67,8 +66,7 @@ with st.container():
         else:
             df_merge = df_merge
             df = df
-        selected_SAL = st.selectbox('Select a salary',options=['all'] + list(df['SALARY_RANGE'].unique())  # The options in the selectbox are 'all' and the unique values in the 'department' column
-        )
+        selected_SAL = st.selectbox('Select a salary',options=['all'] + list(df['SALARY_RANGE'].unique())  )
         
         if selected_SAL  != 'all':
             df_merge = df_merge[df_merge['SALARY_RANGE'] == selected_SAL ]
@@ -81,7 +79,7 @@ with st.container():
         values =df.groupby('GENDER')['GENDER'].value_counts()
         layouts = go.Layout(autosize=False,  width=400, height=350)
         colors= ['#0089BA','#C4FCEF']
-        fig = go.Figure(data=go.Pie(labels=['Female', "Male"], values=values, marker=dict(colors=colors)),layout=layouts)  # Use the layout defined above)
+        fig = go.Figure(data=go.Pie(labels=['Female', "Male"], values=values, marker=dict(colors=colors)),layout=layouts) 
         st.subheader("Gender Ratio")
         st.plotly_chart(fig)
         df_merge['age_range']= df_merge['AGE'].apply(categorize_age)
@@ -95,31 +93,30 @@ with st.container():
         text=[f"{x:.2f}%" for x in df_merge_NO.groupby('age_range')['percentage'].first()],
         textposition='auto',)])
 
-# Set the layout attributes
         fig.update_layout(
             
             xaxis_title='Age Range',
             yaxis_title='Percentage',
             autosize=False,
-            width=500,
-            height=470,
+            width=450,
+            height=420,
             showlegend=False,
             plot_bgcolor='rgba(0,0,0,0)',
         )
         st.subheader("Notices During First Three Year By Age Group")
-        # Display the plot in Streamlit
+   
         st.plotly_chart(fig)
     with col3:
         st.subheader("Full-time and Part-time Employees")
         st.line_chart(pivot_df)
         df_merge['Percentage'] = df_merge.groupby('LENGTHOFSERVICE')['LENGTHOFSERVICE'].transform(lambda x: len(x) / df_merge.shape[0]*100)
         df_merge = df_merge.sort_values('LENGTHOFSERVICE')
-# Create an area chart with custom colors using Plotly
-        layouts1 = go.Layout(autosize=True,  width=530, height=470,xaxis_title='Years')
+
+        layouts1 = go.Layout(autosize=True,  width=500, height=440,xaxis_title='Years')
         fig = go.Figure(layout=layouts1)
         fig.add_trace(go.Scatter(x=df_merge['LENGTHOFSERVICE'], y=df_merge['Percentage'],fill='tozeroy',mode='lines+markers',line_color='#0089BA',fillcolor='#C4FCEF'))
         fig.update_yaxes(range=[0, max(df_merge['Percentage'].max(), df_merge['Percentage'].max())*1.5])
         st.subheader("Time To Quit The Job")
-        # Display the plot in Streamlit
+     
         st.plotly_chart(fig)
         

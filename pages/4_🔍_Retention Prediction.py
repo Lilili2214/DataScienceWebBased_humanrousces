@@ -12,7 +12,7 @@ import json
 import plotly.figure_factory as ff
 from sklearn.preprocessing import LabelEncoder
 
-# Assume df is your DataFrame
+
 le = LabelEncoder()
 
 
@@ -30,7 +30,7 @@ df= pd.concat([df_reten[[i for i in df_reten.columns if i !='ATTRITION']], df.re
 df_workforce= query("workforce")
 
 
-# Load and preprocess the data
+
 employee_dff = pd.read_csv("./employee_data.csv")
 employee_dff['Attrition'] = employee_dff['Attrition'].apply(lambda x: 1 if x == 'Yes' else 0)
 employee_dff['OverTime'] = employee_dff['OverTime'].apply(lambda x: 1 if x == 'Yes' else 0)
@@ -50,7 +50,7 @@ correlations = employee_df.corr()
 heatmap = go.Heatmap(z=correlations.values,
                      x=list(correlations.columns),
                      y=list(correlations.index),
-                     colorscale='rdgy',  # use the 'Viridis' color scale
+                     colorscale='rdgy',  
                      zmin=-1, zmax=1)
 
 layout = go.Layout(title='Correlation Heatmap',
@@ -62,7 +62,7 @@ layout = go.Layout(title='Correlation Heatmap',
 fig = go.Figure(data=[heatmap], layout=layout)
 fig.update_layout(width=1200, height=1200)
 
-# Display the plot in Streamlit
+
 st.plotly_chart(fig)
 st.write("""
 - Job level is strongly correlated with total working hours
@@ -125,10 +125,10 @@ st.write(filtered_df[[i for i in filtered_df.columns if i!='Predicted Status']])
 
 filtered_df['EMPLOYEENUMBER'] = filtered_df['EMPLOYEENUMBER'].astype(str)
 
-# Convert the 'EMPLOYEE_ID' column to string
+
 df_workforce['EMPLOYEE_ID'] = df_workforce['EMPLOYEE_ID'].astype(str)
 
-# Now you can merge
+
 df_expan = pd.merge(filtered_df, df_workforce, left_on='EMPLOYEENUMBER', right_on='EMPLOYEE_ID')
 df_expan= pd.merge(filtered_df,df_workforce,left_on='EMPLOYEENUMBER', right_on= "EMPLOYEE_ID")
 df_expan.columns= df_expan.columns.astype(str)

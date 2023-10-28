@@ -34,7 +34,7 @@ with tab1:
         st.write("We prepare a file test.csv in folder. Please use it")
         uploaded_file = st.file_uploader("Choose a CSV file", type=['csv'])
         if uploaded_file is not None:
-            # Convert the uploaded file to bytes
+           
             file_bytes = uploaded_file.getvalue()
             temp= pd.read_csv(uploaded_file)
             st.write(temp.shape)
@@ -268,10 +268,10 @@ with tab4:
             'weighted avg': {'precision': 0.92, 'recall': 0.92, 'f1-score': 0.92, 'support': 30084}
         }
 
-        # Convert the classification report to a DataFrame
+        
         report_df = pd.DataFrame(classification_report).transpose()
 
-        # Display the DataFrame in Streamlit with headers and subheaders
+      
     st.title('Model Evaluation')
     st.write('The table below presents the evaluation of the model performance. The metrics calculated are precision, recall and F1-score for each class (promoted and not promoted), as well as the overall accuracy of the model.')
     st.dataframe(report_df)

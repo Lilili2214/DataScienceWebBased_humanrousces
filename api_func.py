@@ -19,7 +19,7 @@ d_education = data['education']
 df_skill= query("skill_record")
 df_ole=query("ole")
 df_training_record= query('training_record')
-# For the other dictionaries, you can create them as before
+
 d_kpi= {"Yes":1,"No":0} 
 d_award={"Yes":1,"No":0}
 d_gender= {"Female":1,"Male":0}

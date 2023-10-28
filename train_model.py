@@ -22,9 +22,7 @@ def make_model_save():
 
     label_encoder = LabelEncoder()
 
-    # Encode columns
-    # Encode the columns
-    
+   
     region_map=data['region'].value_counts().to_dict()
     data_off['region']=data_off['region'].map(region_map)
     ordinal_labels=data_off.groupby(['department'])['is_promoted'].mean().sort_values().index
@@ -33,10 +31,10 @@ def make_model_save():
     print(data_off)
     data_off['education']=data_off['education'].replace({"Doctor":5,"Master":4,"Bachelor":3,"College":2,'Below College':1})
     data_off= pd.get_dummies(data_off, drop_first=True)
-    # Save encoded data to CSV
+   
     print(data_off)
 
-    # Prepare dictionaries for JSON
+    
     
     dict_encoder = {"1": "is_promo", "0": "not_promo"}
     with open("encoder.json", "w") as write_file:
@@ -63,12 +61,12 @@ def make_model_save():
        reg_lambda=1, scale_pos_weight=1, seed=None, silent=True,
        subsample=1)
 
-# Training the model on 100% Data available
+
     FinalXGBModel=classifier.fit(X,y)
 
     FinalXGBModel.save_model("main_model.model")
     print(X)
-    # Test model
+   
     
 
 def add_to_data(department, region, education, gender, recruitment_channel, no_of_trainings, age, previous_year_rating, length_of_service, KPIs_met, awards_won, avg_training_score, is_promoted):
@@ -102,9 +100,9 @@ def make_model_retention():
     
     X_cat = employee_df[['BusinessTravel', 'Department', 'EducationField', 'Gender', 'JobRole', 'MaritalStatus']]
     onehotencoder = OneHotEncoder()
-    X_cat = onehotencoder.fit_transform(X_cat).toarray()  # Convert sparse matrix to numpy array
+    X_cat = onehotencoder.fit_transform(X_cat).toarray() 
     X_cat = pd.DataFrame(X_cat)
-    # Get feature names from onehotencoder and convert them to a list
+   
     
     X_numerical = employee_df[['Age', 'DailyRate', 'DistanceFromHome', 'Education', 'EnvironmentSatisfaction', 'HourlyRate', 'JobInvolvement', 'JobLevel', 'JobSatisfaction', 'MonthlyIncome', 'MonthlyRate', 'NumCompaniesWorked', 'OverTime', 'PercentSalaryHike', 'PerformanceRating', 'RelationshipSatisfaction', 'StockOptionLevel', 'TotalWorkingYears', 'TrainingTimesLastYear', 'WorkLifeBalance', 'YearsAtCompany','YearsInCurrentRole', 'YearsSinceLastPromotion', 'YearsWithCurrManager']]
 
@@ -121,7 +119,7 @@ def make_model_retention():
     
     with open('FinalLRModel1.pkl', 'wb') as fileWriteStream:
         pickle.dump(model, fileWriteStream)
-        # Don't forget to close the filestream!
+       
         fileWriteStream.close()
 
 
@@ -134,9 +132,9 @@ def get_feature_retention():
     
     X_cat = employee_df[['BusinessTravel', 'Department', 'EducationField', 'Gender', 'JobRole', 'MaritalStatus']]
     onehotencoder = OneHotEncoder()
-    X_cat = onehotencoder.fit_transform(X_cat).toarray()  # Convert sparse matrix to numpy array
+    X_cat = onehotencoder.fit_transform(X_cat).toarray() 
     X_cat = pd.DataFrame(X_cat)
-    # Get feature names from onehotencoder and convert them to a list
+   
     
     X_numerical = employee_df[['Age', 'DailyRate', 'DistanceFromHome', 'Education', 'EnvironmentSatisfaction', 'HourlyRate', 'JobInvolvement', 'JobLevel', 'JobSatisfaction', 'MonthlyIncome', 'MonthlyRate', 'NumCompaniesWorked', 'OverTime', 'PercentSalaryHike', 'PerformanceRating', 'RelationshipSatisfaction', 'StockOptionLevel', 'TotalWorkingYears', 'TrainingTimesLastYear', 'WorkLifeBalance', 'YearsAtCompany','YearsInCurrentRole', 'YearsSinceLastPromotion', 'YearsWithCurrManager']]
 

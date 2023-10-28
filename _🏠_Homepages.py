@@ -7,11 +7,6 @@ st.set_page_config(layout="wide",
 )
 
 
-# Open an image file
-
-
-
-# Display the image in the sidebar
 
 
 
